@@ -35,7 +35,7 @@ const Contact = () => {
         0 0 18px rgba(139, 92, 246, 0.4)
       `,
       transition: "transform 0.1s ease",
-      transform: "translate(-50%, -50%)",
+      transform: "translate(30px, -50%)",
       display: "none",
       background: "transparent",
     });

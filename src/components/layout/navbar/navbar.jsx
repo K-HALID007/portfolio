@@ -9,7 +9,10 @@ const Header = () => {
     <nav className="fixed top-0 w-full bg-white/20 backdrop-blur-lg shadow-md z-40">
       <div className="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
         {/* Logo */}
-        <Link href="/" className="text-2xl font-bold text-white">
+        <Link
+          href="/"
+          className="text-2xl font-bold text-white hover: transition-all duration-300 transform hover:-translate-y-2   cursor-pointer"
+        >
           Khalid Shaikh
         </Link>
 

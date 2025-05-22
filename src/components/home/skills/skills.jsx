@@ -19,14 +19,14 @@ import {
 } from "react-icons/si";
 
 const skills = [
-  { name: "HTML5", icon: <FaHtml5 className="text-orange-600" /> },
+  { name: "HTML5", icon: <FaHtml5 className="text-orange-500" /> },
   { name: "CSS3", icon: <FaCss3Alt className="text-blue-500" /> },
   { name: "JavaScript", icon: <FaJs className="text-yellow-400" /> },
   { name: "TypeScript", icon: <SiTypescript className="text-blue-600" /> },
   { name: "React", icon: <FaReact className="text-blue-400" /> },
-  { name: "Next.js", icon: <SiNextdotjs className="text-black" /> },
+  { name: "Next.js", icon: <SiNextdotjs className="text-gray-300" /> },
   { name: "Node.js", icon: <FaNodeJs className="text-green-600" /> },
-  { name: "Express.js", icon: <SiExpress className="text-gray-800" /> },
+  { name: "Express.js", icon: <SiExpress className="text-gray-400" /> },
   { name: "MongoDB", icon: <SiMongodb className="text-green-700" /> },
   { name: "Firebase", icon: <SiFirebase className="text-yellow-500" /> },
   { name: "Tailwind CSS", icon: <SiTailwindcss className="text-teal-400" /> },
@@ -38,7 +38,7 @@ const Skills = () => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Use springs for smooth motion instead of instant jumps
+  // Smooth spring motion for tooltip
   const springX = useSpring(mouseX, { damping: 25, stiffness: 150 });
   const springY = useSpring(mouseY, { damping: 25, stiffness: 150 });
 
@@ -48,18 +48,16 @@ const Skills = () => {
   };
 
   useEffect(() => {
-    // Attach global mousemove listener only when tooltip active
     if (hoveredSkill) {
       window.addEventListener("mousemove", handleMouseMove);
     } else {
       window.removeEventListener("mousemove", handleMouseMove);
     }
-    // Cleanup
     return () => window.removeEventListener("mousemove", handleMouseMove);
   }, [hoveredSkill]);
 
+  // Legacy tooltip div with dark styling
   useEffect(() => {
-    // This part creates the legacy tooltip div and animates it smoothly
     const cursor = document.createElement("div");
     cursor.id = "custom-tooltip";
     document.body.appendChild(cursor);
@@ -69,8 +67,8 @@ const Skills = () => {
       top: "0",
       left: "0",
       padding: "8px 16px",
-      background: "#222",
-      color: "#fff",
+      background: "#", // dark gray bg
+      color: "#", // light text
       fontWeight: "700",
       fontSize: "18px",
       fontFamily: "sans-serif",
@@ -129,12 +127,12 @@ const Skills = () => {
       {/* Tooltip Cursor with smooth spring motion */}
       {hoveredSkill && (
         <motion.div
-          className="fixed z-50 px-3 py-1 bg-white text-sm font-bold text-black rounded-lg shadow-lg pointer-events-none select-none"
+          className="fixed z-50 px-3 py-1 bg-gray-800 text-sm font-bold text-gray-100 rounded-lg shadow-lg pointer-events-none select-none"
           style={{
             x: springX,
             y: springY,
             translateX: "-50%",
-            translateY: "-150%", // tooltip above cursor
+            translateY: "-150%",
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -145,9 +143,9 @@ const Skills = () => {
         </motion.div>
       )}
 
-      <div className="max-w-5xl w-full text-center">
+      <div className="max-w-5xl w-full text-center text-gray-100">
         <motion.h2
-          className="text-4xl md:text-5xl font-bold text-white mb-10"
+          className="text-4xl md:text-5xl font-bold mb-10"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -163,16 +161,13 @@ const Skills = () => {
           viewport={{ once: true, amount: 0.3 }}
           variants={{
             hidden: { opacity: 0 },
-            visible: {
-              opacity: 1,
-              transition: { staggerChildren: 0.15 },
-            },
+            visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
           }}
         >
           {skills.map((skill, index) => (
             <motion.div
               key={index}
-              className="flex flex-col items-center justify-center p-4 bg-white rounded-xl hover:shadow-lg transition duration-300 hover:scale-105 cursor-pointer"
+              className="flex flex-col items-center justify-center p-4 bg-gray-800 rounded-xl hover:shadow-lg transition duration-300 hover:scale-105 cursor-pointer"
               variants={{
                 hidden: { opacity: 0, scale: 0.8, y: 20 },
                 visible: {
@@ -186,7 +181,7 @@ const Skills = () => {
               onMouseLeave={() => setHoveredSkill("")}
             >
               <div className="text-4xl mb-2">{skill.icon}</div>
-              <p className="text-lg font-medium text-gray-800">{skill.name}</p>
+              <p className="text-lg font-medium">{skill.name}</p>
             </motion.div>
           ))}
         </motion.div>

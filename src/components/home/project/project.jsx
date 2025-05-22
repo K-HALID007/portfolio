@@ -1,6 +1,6 @@
 "use client";
-import React, { useEffect, useState, useRef } from "react";
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
 
 const projects = [
   {
@@ -29,10 +29,34 @@ const projects = [
   },
 ];
 
+const containerVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      staggerChildren: 0.25,
+      ease: "easeOut",
+      duration: 0.8,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 20, scale: 0.95 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
+
 export default function Projects() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
+    // Custom cursor code as before...
     const cursor = document.createElement("div");
     cursor.id = "custom-cursor-label";
     cursor.textContent = "My Projects";
@@ -56,7 +80,7 @@ export default function Projects() {
       zIndex: "9999",
       whiteSpace: "nowrap",
       textShadow: "0 0 6px rgba(0,0,0,0.7)",
-      backgroundColor: "rgba(255, 165, 0, 0.85)", // orange background
+      backgroundColor: "transparent",
     });
 
     let mouseX = -9999;
@@ -112,14 +136,21 @@ export default function Projects() {
       ref={sectionRef}
       className="min-h-screen px-6 py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative"
     >
-      <div className="max-w-6xl mx-auto">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        className="max-w-6xl mx-auto"
+      >
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
           Projects
         </h2>
         <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, idx) => (
-            <div
+            <motion.div
               key={idx}
+              variants={itemVariants}
               className="group bg-gray-800 rounded-3xl overflow-hidden shadow-xl hover:shadow-orange-500/40 transition duration-300 cursor-pointer"
             >
               <img
@@ -153,10 +184,10 @@ export default function Projects() {
                   View Project →
                 </a>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   );
 }
