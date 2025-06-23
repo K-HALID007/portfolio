@@ -9,6 +9,13 @@ const Hero = () => {
       setIsVisible(true);
     }, 100);
 
+    // Check if device is mobile/touch device
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+    
+    if (isMobile) {
+      return () => clearTimeout(timeout);
+    }
+
     const cursor = document.createElement("div");
     cursor.id = "custom-cursor";
     cursor.textContent = "Khalid Shaikh";
@@ -97,17 +104,17 @@ const Hero = () => {
     };
   }, []);
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gray-900 px-6">
+    <section className="min-h-screen flex items-center justify-center bg-gray-900 px-4 sm:px-6 lg:px-8">
       <div
-        className={`text-center max-w-3xl transform transition-all duration-1000 ease-out ${
+        className={`text-center max-w-4xl mx-auto transform transition-all duration-1000 ease-out ${
           isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-5"
         }`}
       >
-        <h1 className="text-5xl md:text-6xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-yellow-400">
+        <h1 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 text-transparent bg-clip-text bg-gradient-to-r from-orange-400 via-red-500 to-yellow-400 leading-tight">
           Hi, I'm Khalid
         </h1>
 
-        <p className="text-lg md:text-xl text-gray-300 mb-4">
+        <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-3 sm:mb-4 leading-relaxed px-2 sm:px-0">
           I&apos;m a passionate Full-stack Developer crafting beautiful web
           experiences with{" "}
           <span className="font-semibold text-gray-200">Next.js</span>,{" "}
@@ -115,19 +122,19 @@ const Hero = () => {
           <span className="font-semibold text-gray-200">Tailwind CSS</span>.
         </p>
 
-        <p className="text-lg md:text-xl text-gray-300 mb-4">
+        <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-3 sm:mb-4 leading-relaxed px-2 sm:px-0">
           Building fast, scalable, and elegant applications that solve real
           problems is what drives me every day.
         </p>
 
-        <p className="text-lg md:text-xl text-gray-300 mb-6">
+        <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 mb-6 sm:mb-8 leading-relaxed px-2 sm:px-0">
           I’m dedicated to continuous learning and pushing boundaries to deliver
           exceptional digital experiences.
         </p>
 
         <a
           href="contactme"
-          className="inline-block px-8 py-3 text-white bg-orange-600 hover:bg-orange-700 rounded-xl text-lg transition-transform duration-300 transform hover:scale-105 shadow-md hover:shadow-orange-400/40"
+          className="inline-block px-6 sm:px-8 py-2.5 sm:py-3 text-sm sm:text-base lg:text-lg text-white bg-orange-600 hover:bg-orange-700 rounded-xl transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-orange-400/40 mx-2"
         >
           Let's Connect
         </a>

@@ -58,6 +58,13 @@ const Skills = () => {
 
   // Legacy tooltip div with dark styling
   useEffect(() => {
+    // Check if device is mobile/touch device
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+    
+    if (isMobile) {
+      return;
+    }
+
     const cursor = document.createElement("div");
     cursor.id = "custom-tooltip";
     document.body.appendChild(cursor);
@@ -123,7 +130,7 @@ const Skills = () => {
   }, [hoveredSkill]);
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 bg-gray-900 relative overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-900 relative overflow-hidden py-12 sm:py-16 lg:py-20">
       {/* Tooltip Cursor with smooth spring motion */}
       {hoveredSkill && (
         <motion.div
@@ -143,9 +150,9 @@ const Skills = () => {
         </motion.div>
       )}
 
-      <div className="max-w-5xl w-full text-center text-gray-100">
+      <div className="max-w-6xl w-full text-center text-gray-100">
         <motion.h2
-          className="text-4xl md:text-5xl font-bold mb-10"
+          className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-8 sm:mb-10 lg:mb-12 leading-tight"
           initial={{ opacity: 0, y: -30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.3 }}
@@ -155,7 +162,7 @@ const Skills = () => {
         </motion.h2>
 
         <motion.div
-          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8"
+          className="grid grid-cols-2 xs:grid-cols-3 sm:grid-cols-4 md:grid-cols-4 lg:grid-cols-6 gap-4 sm:gap-6 lg:gap-8"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.3 }}
@@ -167,7 +174,7 @@ const Skills = () => {
           {skills.map((skill, index) => (
             <motion.div
               key={index}
-              className="flex flex-col items-center justify-center p-4 bg-gray-800 rounded-xl hover:shadow-lg transition duration-300 hover:scale-105 cursor-pointer"
+              className="flex flex-col items-center justify-center p-3 sm:p-4 lg:p-6 bg-gray-800 rounded-xl hover:shadow-lg transition duration-300 hover:scale-105 cursor-pointer"
               variants={{
                 hidden: { opacity: 0, scale: 0.8, y: 20 },
                 visible: {
@@ -180,8 +187,8 @@ const Skills = () => {
               onMouseEnter={() => setHoveredSkill(skill.name)}
               onMouseLeave={() => setHoveredSkill("")}
             >
-              <div className="text-4xl mb-2">{skill.icon}</div>
-              <p className="text-lg font-medium">{skill.name}</p>
+              <div className="text-2xl sm:text-3xl lg:text-4xl mb-1 sm:mb-2">{skill.icon}</div>
+              <p className="text-xs sm:text-sm lg:text-base font-medium text-center">{skill.name}</p>
             </motion.div>
           ))}
         </motion.div>

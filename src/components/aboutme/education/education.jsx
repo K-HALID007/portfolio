@@ -29,6 +29,13 @@ const education = [
 
 const Education = () => {
   useEffect(() => {
+    // Check if device is mobile/touch device
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+    
+    if (isMobile) {
+      return;
+    }
+
     const cursor = document.createElement("div");
     cursor.id = "education-cursor";
     cursor.innerText = "Education";
@@ -108,31 +115,31 @@ const Education = () => {
   return (
     <section
       id="education-section"
-      className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-800 px-6 py-20 flex items-center justify-center"
+      className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-900 dark:to-gray-800 px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 flex items-center justify-center"
     >
-      <div className="max-w-5xl w-full">
-        <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white mb-12">
+      <div className="max-w-6xl w-full">
+        <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center text-gray-900 dark:text-white mb-8 sm:mb-10 lg:mb-12 leading-tight">
           <span className="inline-block text-orange-600 mr-2 animate-bounce">
             🎓
           </span>
           Education
         </h2>
 
-        <div className="space-y-10">
+        <div className="space-y-6 sm:space-y-8 lg:space-y-10">
           {education.map((edu, index) => (
             <FadeInSlideUp key={index} delay={index * 200}>
-              <div className="relative flex flex-col md:flex-row bg-white dark:bg-gray-900 rounded-3xl shadow-lg p-8 md:p-10 transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(251,146,60,0.7)]">
-                <div className="flex-shrink-0 mr-6 text-orange-500 text-4xl animate-pulse-slow">
+              <div className="relative flex flex-col lg:flex-row bg-white dark:bg-gray-900 rounded-3xl shadow-lg p-4 sm:p-6 lg:p-8 xl:p-10 transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(251,146,60,0.7)]">
+                <div className="flex-shrink-0 lg:mr-4 xl:mr-6 text-orange-500 text-2xl sm:text-3xl lg:text-4xl animate-pulse-slow mb-4 lg:mb-0 text-center lg:text-left">
                   <FaGraduationCap />
                 </div>
-                <div>
-                  <h3 className="text-2xl font-semibold mb-1 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-500 bg-clip-text text-transparent dark:text-transparent">
+                <div className="text-center lg:text-left">
+                  <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-1 bg-gradient-to-r from-orange-500 via-yellow-400 to-orange-500 bg-clip-text text-transparent dark:text-transparent">
                     {edu.degree}
                   </h3>
-                  <p className="text-sm text-gray-500 dark:text-gray-400 mb-3">
+                  <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-3">
                     {edu.institution} • {edu.duration}
                   </p>
-                  <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 leading-relaxed">
                     {edu.description}
                   </p>
                 </div>

@@ -55,3 +55,175 @@ body {
 .animate-glow-container {
   animation: containerGlow 3s ease-in-out infinite;
 }
+
+/* Additional responsive utilities */
+@media (max-width: 475px) {
+  .xs\:text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+  .xs\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+  .xs\:w-72 {
+    width: 18rem;
+  }
+  .xs\:h-72 {
+    height: 18rem;
+  }
+  .xs\:w-56 {
+    width: 14rem;
+  }
+  .xs\:h-56 {
+    height: 14rem;
+  }
+  .xs\:grid-cols-3 {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+/* Ensure proper text scaling on very small screens */
+@media (max-width: 320px) {
+  html {
+    font-size: 14px;
+  }
+}
+
+/* Improve touch targets on mobile */
+@media (max-width: 768px) {
+  button, a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Additional responsive utilities for better mobile experience */
+.glass-dark {
+  background: rgba(17, 24, 39, 0.8);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.bg-gradient-primary {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+}
+
+.hover-lift {
+  transition: transform 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-2px);
+}
+
+@keyframes slideInLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slideInLeft {
+  animation: slideInLeft 0.3s ease-out;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Enhanced responsive breakpoints */
+@media (max-width: 375px) {
+  .xxs\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+  .xxs\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+  .xxs\:px-2 {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  .xxs\:py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+  }
+}
+
+/* Ensure proper spacing on all screen sizes */
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1280px;
+  }
+}
+
+/* Smooth scrolling for better UX */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed navbar */
+}
+
+/* Ensure sections don't get hidden behind fixed navbar */
+section {
+  scroll-margin-top: 80px;
+}
+
+/* Focus styles for accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #8b5cf6;
+  outline-offset: 2px;
+}
+
+/* Hide custom cursors on touch devices and mobile screens */
+@media (hover: none) and (pointer: coarse) {
+  #custom-cursor,
+  #about-cursor,
+  #about-me-cursor,
+  #education-cursor,
+  #experience-cursor,
+  #reach-out-cursor,
+  #custom-tooltip,
+  #custom-cursor-label {
+    display: none !important;
+    opacity: 0 !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #custom-cursor,
+  #about-cursor,
+  #about-me-cursor,
+  #education-cursor,
+  #experience-cursor,
+  #reach-out-cursor,
+  #custom-tooltip,
+  #custom-cursor-label {
+    display: none !important;
+    opacity: 0 !important;
+  }
+}

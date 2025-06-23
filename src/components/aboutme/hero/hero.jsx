@@ -5,6 +5,13 @@ import { Typewriter } from "react-simple-typewriter";
 const Hero = () => {
   const sectionRef = useRef(null);
   useEffect(() => {
+    // Check if device is mobile/touch device
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+    
+    if (isMobile) {
+      return;
+    }
+
     const cursor = document.createElement("div");
     cursor.id = "about-me-cursor";
     cursor.innerText = "About Me";
@@ -80,13 +87,13 @@ const Hero = () => {
     <section
       id="hero"
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center bg-gray-900 px-6 pt-20"
+      className="min-h-screen flex items-center justify-center bg-gray-900 px-4 sm:px-6 lg:px-8 pt-16 sm:pt-20 pb-12 sm:pb-16 lg:pb-20"
     >
-      <div className="flex flex-col-reverse md:flex-row items-center max-w-6xl w-full gap-10">
+      <div className="flex flex-col-reverse xl:flex-row items-center max-w-7xl w-full gap-8 sm:gap-10 lg:gap-16">
         {/* Left side: Text content */}
-        <div className="text-center md:text-left flex-1">
+        <div className="text-center xl:text-left flex-1">
           <h1
-            className="text-5xl md:text-6xl font-bold text-white mb-6 animate-fadeIn"
+            className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-4 sm:mb-6 animate-fadeIn leading-tight"
             style={{
               animationDuration: "1.2s",
               animationTimingFunction: "ease-out",
@@ -95,7 +102,7 @@ const Hero = () => {
             Hi, I'm <span className="text-orange-500">Khalid</span>
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-300 leading-relaxed">
+          <p className="text-sm xs:text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed px-2 sm:px-0">
             <Typewriter
               words={[
                 `I’m Khalid Shaikh, a passionate and results-driven MERN Stack Developer and DevOps Engineer. I specialize in building scalable web applications, cloud-native deployments, and responsive user interfaces with clean, maintainable code. My experience includes projects like dynamic e-commerce platforms, full-stack apps, and system integrations.
@@ -111,11 +118,11 @@ I love learning new tools, contributing to open-source projects, and mentoring f
         </div>
 
         {/* Right side: Profile Image */}
-        <div className="flex justify-center md:justify-end flex-1">
+        <div className="flex justify-center xl:justify-end flex-1 mt-8 xl:mt-0">
           <img
             src="/k.jpg"
             alt="Khalid"
-            className="w-64 h-64 rounded-full object-cover border-4 border-orange-400 shadow-lg ring-2 ring-orange-500 ring-opacity-60 transition-transform duration-300 hover:scale-105"
+            className="w-48 h-48 xs:w-56 xs:h-56 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full object-cover border-4 border-orange-400 shadow-lg ring-2 ring-orange-500 ring-opacity-60 transition-transform duration-300 hover:scale-105"
           />
         </div>
       </div>

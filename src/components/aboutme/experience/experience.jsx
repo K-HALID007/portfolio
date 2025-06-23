@@ -54,6 +54,13 @@ const cardVariants = {
 
 const Experience = () => {
   useEffect(() => {
+    // Check if device is mobile/touch device
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+    
+    if (isMobile) {
+      return;
+    }
+
     const cursor = document.createElement("div");
     cursor.id = "experience-cursor";
     cursor.innerText = "Experience";
@@ -131,11 +138,11 @@ const Experience = () => {
   return (
     <section
       id="experience-section"
-      className="min-h-screen flex items-center justify-center px-6 bg-gray-900 py-20"
+      className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 bg-gray-900 py-12 sm:py-16 lg:py-20"
     >
-      <div className="max-w-5xl w-full text-center">
+      <div className="max-w-6xl w-full text-center">
         <motion.h2
-          className="text-4xl md:text-5xl font-bold text-gray-200 mb-12"
+          className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-200 mb-8 sm:mb-10 lg:mb-12 leading-tight"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
@@ -144,29 +151,29 @@ const Experience = () => {
           Experience
         </motion.h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 lg:gap-10">
           {experiences.map((exp, index) => (
             <motion.div
               key={index}
-              className="p-6 border rounded-xl shadow transition duration-300 text-left hover:shadow-2xl hover:scale-105 hover:bg-white/5"
+              className="p-4 sm:p-6 border rounded-xl shadow transition duration-300 text-left hover:shadow-2xl hover:scale-105 hover:bg-white/5"
               custom={index}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true }}
               variants={cardVariants}
             >
-              <div className="flex items-center gap-4 mb-4">
-                {exp.icon}
+              <div className="flex items-center gap-3 sm:gap-4 mb-4">
+                <div className="text-2xl sm:text-3xl">{exp.icon}</div>
                 <div>
-                  <h3 className="text-xl font-semibold text-gray-200">
+                  <h3 className="text-lg sm:text-xl font-semibold text-gray-200">
                     {exp.title}
                   </h3>
-                  <p className="text-sm text-gray-200">
+                  <p className="text-xs sm:text-sm text-gray-200">
                     {exp.company} | {exp.duration}
                   </p>
                 </div>
               </div>
-              <p className="text-gray-200">{exp.description}</p>
+              <p className="text-sm sm:text-base text-gray-200 leading-relaxed">{exp.description}</p>
             </motion.div>
           ))}
         </div>

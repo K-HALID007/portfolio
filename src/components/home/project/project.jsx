@@ -56,6 +56,13 @@ export default function Projects() {
   const sectionRef = useRef(null);
 
   useEffect(() => {
+    // Check if device is mobile/touch device
+    const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
+    
+    if (isMobile) {
+      return;
+    }
+
     // Custom cursor code as before...
     const cursor = document.createElement("div");
     cursor.id = "custom-cursor-label";
@@ -134,19 +141,19 @@ export default function Projects() {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen px-6 py-16 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative"
+      className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white relative"
     >
       <motion.div
         variants={containerVariants}
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
-        className="max-w-6xl mx-auto"
+        className="max-w-7xl mx-auto"
       >
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
+        <h2 className="text-3xl xs:text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 leading-tight">
           Projects
         </h2>
-        <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+        <div className="grid gap-6 sm:gap-8 lg:gap-10 sm:grid-cols-2 lg:grid-cols-3">
           {projects.map((project, idx) => (
             <motion.div
               key={idx}
@@ -156,20 +163,20 @@ export default function Projects() {
               <img
                 src={project.image}
                 alt={project.title}
-                className="w-full h-52 object-cover transform group-hover:scale-110 transition duration-500"
+                className="w-full h-40 sm:h-48 lg:h-52 object-cover transform group-hover:scale-110 transition duration-500"
               />
-              <div className="p-6">
-                <h3 className="text-2xl font-semibold mb-2 group-hover:text-orange-500 transition">
+              <div className="p-4 sm:p-6">
+                <h3 className="text-lg sm:text-xl lg:text-2xl font-semibold mb-2 group-hover:text-orange-500 transition">
                   {project.title}
                 </h3>
-                <p className="text-gray-300 mb-3 text-sm leading-relaxed">
+                <p className="text-gray-300 mb-3 text-xs sm:text-sm leading-relaxed">
                   {project.description}
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tech.map((tech, idx) => (
                     <span
                       key={idx}
-                      className="bg-orange-600/80 text-sm px-3 py-1 rounded-full"
+                      className="bg-orange-600/80 text-xs sm:text-sm px-2 sm:px-3 py-1 rounded-full"
                     >
                       {tech}
                     </span>
@@ -179,7 +186,7 @@ export default function Projects() {
                   href={project.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-orange-400 hover:text-orange-300 font-medium"
+                  className="text-orange-400 hover:text-orange-300 font-medium text-xs sm:text-sm"
                 >
                   View Project →
                 </a>
